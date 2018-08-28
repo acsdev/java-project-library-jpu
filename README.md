@@ -18,4 +18,4 @@ This project has a single goal, became an big repository of smart algorithims in
 
 #### Code will be comming soom
 
-####Feel free to jump in [;-[)
+#### Feel free to jump in [;-[)
