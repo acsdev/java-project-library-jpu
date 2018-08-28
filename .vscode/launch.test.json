@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "eti.jpu",
+                "projectName": "eti.jpu",
+                "workingDirectory": "/home/eds000215/Dev/wk.spcs/wk.myprojects/java-project-library-jpu/eti.jpu",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "eti.jpu",
+                "projectName": "eti.jpu",
+                "workingDirectory": "/home/eds000215/Dev/wk.spcs/wk.myprojects/java-project-library-jpu/eti.jpu",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
