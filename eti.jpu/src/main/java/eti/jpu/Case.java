@@ -56,9 +56,9 @@ public final class Case {
     }
 
     /**
-     * Execute a runnble method if the value of Case is true.
-     * @param runnable Runnable instance that will be executed if Case is true.
-     * @return TrueOption&lt;&gt; classe that can be use to configure rotine if Case is false.
+     * Execute a Runnble if "Case Result" equals true.
+     * @param runnable Runnable instance that will be executed if "Case Result" equals true.
+     * @return TrueOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals false.
      */
     public TrueOption<?> trueRun(Runnable runnable) {
         Objects.requireNonNull( runnable );        
@@ -69,9 +69,9 @@ public final class Case {
     }
     
     /**
-     * Execute a suplier method if the value of Case is true.
-     * @param supplier Supplier&lt;R&gt; instance that will be executed if Case is true.
-     * @return TrueOption&lt;R&gt; classe that can be use to configure rotine if Case is false.
+     * Execute a Supplier if "Case Result" equals true.
+     * @param supplier Supplier&lt;R&gt; instance that will be executed if "Case Result" equals true.
+     * @return TrueOption&lt;R&gt; class that can be use to configure rotine if "Case Result" equals false.
      */
     public <R> TrueOption<R> trueGet(Supplier<R> supplier) {
         Objects.requireNonNull( supplier );
@@ -81,47 +81,28 @@ public final class Case {
         return new TrueOption<R>();
     }
     
+  
     /**
-     * Execute a consumer method if the value of Case is true.
-     * @param consumer Consumer&lt;E&gt; instance that will be executed if Case is true.
-     * @return TrueOption&lt;Consumer&lt;E&gt&gt; classe that can be use to configure rotine if Case is false.
-     */
-    public <E> TrueOption<Consumer<E>> trueAccept(Consumer<E> consumer) {
-        Objects.requireNonNull( consumer );
-        
-        if (Boolean.TRUE.equals( objectValue )) {
-            this.result = Optional.of( consumer );
-        }
-        
-        return new TrueOption<Consumer<E>>();
-    }
-    
-    /**
-     * Execute a consumer method if the value of Case is true.
-     * @param consumer Consumer&lt;E&gt; instance that will be executed if Case is true.
-     * @param consumer Consumer&lt;E&gt; instance that will be executed if Case is true.
-     * @return TrueOption&lt;?&gt; classe that can be use to configure rotine if Case is false.
+     * Execute a Consumer if "Case Result" equals true.
+     * @param consumer Consumer&lt;E&gt; instance that will be executed if "Case Result" equals true.
+     * @param element element E that will be used as arg in accept method.
+     * @return TrueOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals false.
      */
     public <E> TrueOption<?> trueAccept(Consumer<E> consumer, E element) {
         Objects.requireNonNull( consumer );
-        
         if (Boolean.TRUE.equals( objectValue )) {
             consumer.accept( element );
-        }
-        
+        }        
         return new TrueOption<>();
     }
     
-    public <E,F> TrueOption<BiConsumer<E,F>> trueAccept(BiConsumer<E,F> biConsumer) {
-        Objects.requireNonNull( biConsumer );
-        
-        if (Boolean.TRUE.equals( objectValue )) {
-            this.result = Optional.of( biConsumer );
-        }
-        
-        return new TrueOption<BiConsumer<E,F>>();
-    }
-    
+    /**
+     * Execute a BiConsumer if "Case Result" equals true.
+     * @param biConsumer Consumer&lt;E&gt; instance that will be executed if "Case Result" equals true.
+     * @param elementOne elementOne E that will be used as first arg in accept method.
+     * @param elementTwo elementTwo F that will be used as second arg in accept method.
+     * @return TrueOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals false.
+     */
     public <E,F> TrueOption<?> trueAccept(BiConsumer<E,F> biConsumer, E elementOne, F elementTwo) {
         Objects.requireNonNull( biConsumer );
         
@@ -129,29 +110,15 @@ public final class Case {
             biConsumer.accept( elementOne, elementTwo );
         }
         
-        return new TrueOption();
+        return new TrueOption<>();
     }
     
-    public <E, R> TrueOption<Function<E, R>> trueApply(Function<E, R> mapper) {
-        Objects.requireNonNull( mapper );
-        
-        if (Boolean.TRUE.equals( objectValue )) {
-            this.result = Optional.ofNullable( mapper );
-        }
-        
-        return new TrueOption<Function<E, R>>();
-    }
-    
-    public <E, F, R> TrueOption<BiFunction<E, F, R>> trueApply(BiFunction<E, F, R> mapper) {
-        Objects.requireNonNull( mapper );
-        
-        if (Boolean.TRUE.equals( objectValue )) {
-            this.result = Optional.ofNullable( mapper );
-        }
-        
-        return new TrueOption<BiFunction<E, F, R>>();
-    }
-    
+    /**
+     * Execute a Function if "Case Result" equals true.
+     * @param mapper Function&lt;E, R&gt; instance that will be executed if "Case Result" equals true.
+     * @param element element E that will be used as arg in apply method.
+     * @return TrueOption&lt;R&gt; class that can be use to configure rotine if "Case Result" equals false.
+     */
     public <E, R> TrueOption<R> trueApply(Function<E, R> mapper, E element) {
         Objects.requireNonNull( mapper );
         
@@ -162,6 +129,13 @@ public final class Case {
         return new TrueOption<R>();
     }
     
+    /**
+     * Execute a BiFunction if "Case Result" equals true.
+     * @param mapper Function&lt;E, F, R&gt; instance that will be executed if "Case Result" equals true.
+     * @param elementOne element E that will be used as first arg in apply method.
+     * @param elementTwo element F that will be used as second arg in apply method.
+     * @return TrueOption&lt;R&gt; class that can be use to configure rotine if "Case Result" equals false.
+     */
     public <E, F, R> TrueOption<R> trueApply(BiFunction<E, F, R> mapper, E elementOne, F elementTwo) {
         Objects.requireNonNull( mapper );
         
@@ -172,103 +146,87 @@ public final class Case {
         return new TrueOption<R>();
     }
     
+    /**
+     * Execute a Runnble if "Case Result" equals false.
+     * @param runnable Runnable instance that will be executed if "Case Result" equals false.
+     * @return FalseOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals true.
+     */
     public FalseOption<?> falseRun(Runnable runnable) {
         Objects.requireNonNull( runnable );
-        
         if (Boolean.FALSE.equals( objectValue )) {
             runnable.run();
-        }
-        
-        return new FalseOption();
+        }        
+        return new FalseOption<>();
     }
     
+    /**
+     * Execute a Supplier if "Case Result" equals false.
+     * @param supplier Supplier&lt;R&gt; instance that will be executed if "Case Result" equals false.
+     * @return FalseOption&lt;R&gt; class that can be use to configure rotine if "Case Result" equals true.
+     */
     public <R> FalseOption<R> falseGet(Supplier<R> supplier) {
-        Objects.requireNonNull( supplier );
-        
+        Objects.requireNonNull( supplier );        
         if (Boolean.FALSE.equals( objectValue )) {
             this.result = Optional.ofNullable( supplier.get() );
         }
-        
         return new FalseOption<R>();
     }
     
-    public <E> FalseOption<Consumer<E>> falseAccept(Consumer<E> consumer) {
-        Objects.requireNonNull( consumer );
-        
-        if (Boolean.FALSE.equals( objectValue )) {
-            this.result = Optional.of( consumer );
-        }
-        
-        return new FalseOption<Consumer<E>>();
-    }
-    
+    /**
+     * Execute a Consumer if "Case Result" equals false.
+     * @param consumer Consumer&lt;E&gt; instance that will be executed if "Case Result" equals false.
+     * @param element element E that will be used as arg in accept method.
+     * @return FalseOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals true.
+     */
     public <E> FalseOption<?> falseAccept(Consumer<E> consumer, E element) {
         Objects.requireNonNull( consumer );
-        
         if (Boolean.FALSE.equals( objectValue )) {
             consumer.accept( element );
-        }
-        
-        return new FalseOption();
+        }        
+        return new FalseOption<>();
     }
-    
-    public <E, F> FalseOption<BiConsumer<E, F>> falseAccept(BiConsumer<E, F> biConsumer) {
-        Objects.requireNonNull( biConsumer );
-        
-        if (Boolean.FALSE.equals( objectValue )) {
-            this.result = Optional.of( biConsumer );
-        }
-        
-        return new FalseOption<BiConsumer<E, F>>();
-    }
-    
+     
+    /**
+     * Execute a BiConsumer if "Case Result" equals false.
+     * @param biConsumer BiConsumer&lt;E, F&gt; instance that will be executed if "Case Result" equals false.
+     * @param elementOne element E that will be used as first arg in accept method.
+     * @param elementTwo element F that will be used as second arg in accept method.
+     * @return FalseOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals true.
+     */
     public <E, F> FalseOption<?> falseAccept(BiConsumer<E, F> biConsumer, E elementOne, F elementTwo) {
         Objects.requireNonNull( biConsumer );
-        
         if (Boolean.FALSE.equals( objectValue )) {
             biConsumer.accept( elementOne, elementTwo );
         }
-        
-        return new FalseOption();
+        return new FalseOption<>();
     }
     
-    public <E, R> FalseOption<Function<E, R>> falseApply(Function<E, R> mapper) {
-        Objects.requireNonNull( mapper );
-        
-        if (Boolean.FALSE.equals( objectValue )) {
-            this.result = Optional.ofNullable( mapper );
-        }
-        
-        return new FalseOption<Function<E, R>>();
-    }
-    
-    public <E, F, R> FalseOption<BiFunction<E, F, R>> falseApply(BiFunction<E, F, R> mapper) {
-        Objects.requireNonNull( mapper );
-        
-        if (Boolean.FALSE.equals( objectValue )) {
-            this.result = Optional.ofNullable( mapper );
-        }
-        
-        return new FalseOption<BiFunction<E, F, R>>();
-    }
-    
-    public <E, F, R> TrueOption<R> falseApply(BiFunction<E, F, R> mapper, E elementOne, F elementTwo) {
-        Objects.requireNonNull( mapper );
-        
-        if (Boolean.FALSE.equals( objectValue )) {
-            this.result = Optional.ofNullable( mapper.apply( elementOne, elementTwo ) );
-        }
-        
-        return new TrueOption<R>();
-    }
-    
+    /**
+     * Execute a Function if "Case Result" equals false.
+     * @param mapper Function&lt;E, R&gt; instance that will be executed if "Case Result" equals false.
+     * @param element element E that will be used as arg in apply method.
+     * @return FalseOption&lt;R&gt; class that can be use to configure rotine if "Case Result" equals true.
+     */
     public <E, R> FalseOption<R> falseApply(Function<E, R> mapper, E element) {
         Objects.requireNonNull( mapper );
-        
         if (Boolean.FALSE.equals( objectValue )) {
             this.result = Optional.ofNullable( mapper.apply( element ) );
-        }
-        
+        }        
+        return new FalseOption<R>();
+    }
+    
+    /**
+     * Execute a BiFunction if "Case Result" equals false.
+     * @param mapper BiFunction&lt;E, F, R&gt; instance that will be executed if "Case Result" equals false.
+     * @param elementOne element E that will be used as first arg in apply method.
+     * @param elementTwo element F that will be used as second arg in apply method.
+     * @return FalseOption&lt;?&gt; class that can be use to configure rotine if "Case Result" equals true.
+     */
+    public <E, F, R> FalseOption<R> falseApply(BiFunction<E, F, R> mapper, E elementOne, F elementTwo) {
+        Objects.requireNonNull( mapper );
+        if (Boolean.FALSE.equals( objectValue )) {
+            this.result = Optional.ofNullable( mapper.apply( elementOne, elementTwo ) );
+        }       
         return new FalseOption<R>();
     }
     
@@ -279,101 +237,49 @@ public final class Case {
         
         public ResultOption<?> falseRun(Runnable runnable) {
             Objects.requireNonNull( runnable );
-            
             if (Boolean.FALSE.equals( objectValue )) {
                 runnable.run();
-            }
-            
+            }            
             return new ResultOption<>();
         }
         
         public <R> ResultOption<R> falseGet(Supplier<R> supplier) {
             Objects.requireNonNull( supplier );
-            
             if (Boolean.FALSE.equals( objectValue )) {
                 Case.this.result = Optional.ofNullable( supplier.get() );
-            }
-            
+            }            
             return new ResultOption<R>();
         }
         
-        public <E> ResultOption<Consumer<E>> falseAccept(Consumer<E> consumer) {
-            Objects.requireNonNull( consumer );
-            
-            if (Boolean.FALSE.equals( objectValue )) {
-                Case.this.result = Optional.ofNullable( consumer );
-            }
-            
-            return new ResultOption<Consumer<E>>();
-        }
-        
         public <E> ResultOption<?> falseAccept(Consumer<E> consumer, E element) {
-            Objects.requireNonNull( consumer );
-            
+            Objects.requireNonNull( consumer );            
             if (Boolean.FALSE.equals( objectValue )) {
                 consumer.accept( element );
             }
-            
             return new ResultOption<>();
         }
         
         public <E, F> ResultOption<?> falseAccept(BiConsumer<E, F> biConsumer, E elementOne, F elementTwo) {
             Objects.requireNonNull( biConsumer );
-            
             if (Boolean.FALSE.equals( objectValue )) {
                 biConsumer.accept( elementOne, elementTwo );
-            }
-            
+            }            
             return new ResultOption<>();
-        }
-        
-        public <E, F> ResultOption<BiConsumer<E, F>> falseAccept(BiConsumer<E, F> biConsumer) {
-            Objects.requireNonNull( biConsumer );
-            
-            if (Boolean.FALSE.equals( objectValue )) {
-                Case.this.result = Optional.ofNullable( biConsumer );
-            }
-            
-            return new ResultOption<BiConsumer<E, F>>();
-        }
-        
-        public <E, R> ResultOption<Function<E, R>> falseApply(Function<E, R> mapper) {
-            Objects.requireNonNull( mapper );
-            
-            if (Boolean.FALSE.equals( Case.this.objectValue )) {
-                Case.this.result = Optional.ofNullable( mapper );
-            }
-            
-            return new ResultOption<Function<E, R>>();
-        }
-        
-        public <E, F, R> ResultOption<BiFunction<E, F, R>> falseApply(BiFunction<E, F, R> mapper) {
-            Objects.requireNonNull( mapper );
-            
-            if (Boolean.FALSE.equals( objectValue )) {
-                Case.this.result = Optional.ofNullable( mapper );
-            }
-            
-            return new ResultOption<BiFunction<E, F, R>>();
         }
         
         public <E, R> ResultOption<R> falseApply(Function<E, R> mapper, E element) {
             Objects.requireNonNull( element );
-            
             if (Boolean.FALSE.equals( Case.this.objectValue )) {
                 Case.this.result = Optional.ofNullable( mapper.apply( element ) );
-            }
-            
+            }            
             return new ResultOption<R>();
         }
         
         public <E, F, R> ResultOption<R> falseApply(BiFunction<E, F, R> mapper, E elementOne, F elementTwo) {
             Objects.requireNonNull( mapper );
-            
             if (Boolean.FALSE.equals( objectValue )) {
                 Case.this.result = Optional.ofNullable( mapper.apply(elementOne, elementTwo) );
             }
-            
             return new ResultOption<R>();
         }
     }
@@ -385,101 +291,49 @@ public final class Case {
         
         public ResultOption<T> trueRun(Runnable runnable) {
             Objects.requireNonNull( runnable );
-            
             if (Boolean.TRUE.equals( Case.this.objectValue )) {
                 runnable.run();
             }
-            
             return new ResultOption<T>();
         }
         
         public <R> ResultOption<R> trueGet(Supplier<R> supplier) {
             Objects.requireNonNull( supplier );
-            
             if (Boolean.TRUE.equals( objectValue )) {
                 Case.this.result = Optional.ofNullable( supplier.get() );
-            }
-            
+            }        
             return new ResultOption<R>();
-        }
-        
-        public <E> ResultOption<Consumer<E>> trueAccept(Consumer<E> consumer) {
-            Objects.requireNonNull( consumer );
-            
-            if (Boolean.TRUE.equals( Case.this.objectValue )) {
-                Case.this.result = Optional.ofNullable( consumer );
-            }
-            
-            return new ResultOption<Consumer<E>>();
         }
         
         public <E> ResultOption<T> trueAccept(Consumer<E> consumer, E element) {
             Objects.requireNonNull( consumer );
-            
             if (Boolean.TRUE.equals( Case.this.objectValue )) {
                 consumer.accept( element );
             }
-            
             return new ResultOption<T>();
-        }
-        
-        public <E,F> ResultOption<BiConsumer<E,F>> trueAccept(BiConsumer<E,F> biConsumer) {
-            Objects.requireNonNull( biConsumer );
-            
-            if (Boolean.TRUE.equals( Case.this.objectValue )) {
-                Case.this.result = Optional.ofNullable( biConsumer );
-            }
-            
-            return new ResultOption<BiConsumer<E,F>>();
         }
         
         public <E,F> ResultOption<T> trueAccept(BiConsumer<E,F> biConsumer, E elementOne, F elementTwo) {
             Objects.requireNonNull( biConsumer );
-            
             if (Boolean.TRUE.equals( Case.this.objectValue )) {
                 biConsumer.accept( elementOne, elementTwo );
             }
-            
             return new ResultOption<T>();
-        }
-        
-        public <E, R> ResultOption<Function<E, R>> trueApply(Function<E, R> mapper) {
-            Objects.requireNonNull( mapper );
-            
-            if (Boolean.TRUE.equals( Case.this.objectValue )) {
-                Case.this.result = Optional.ofNullable( mapper );
-            }
-            
-            return new ResultOption<Function<E, R>>();
-        }
-        
-        public <E, F, R> ResultOption<BiFunction<E, F, R>> trueApply(BiFunction<E, F, R> mapper) {
-            Objects.requireNonNull( mapper );
-            
-            if (Boolean.TRUE.equals( objectValue )) {
-                Case.this.result = Optional.ofNullable( mapper );
-            }
-            
-            return new ResultOption<BiFunction<E, F, R>>();
         }
         
         public <E, R> ResultOption<R> trueApply(Function<E, R> mapper, E element) {
             Objects.requireNonNull( element );
-            
             if (Boolean.TRUE.equals( Case.this.objectValue )) {
                 Case.this.result = Optional.ofNullable( mapper.apply( element ) );
             }
-            
             return new ResultOption<R>();
         }
         
         public <E, F, R> ResultOption<R> trueApply(BiFunction<E, F, R> mapper, E elementOne, F elementTwo) {
             Objects.requireNonNull( mapper );
-            
             if (Boolean.TRUE.equals( objectValue )) {
                 Case.this.result = Optional.ofNullable( mapper.apply(elementOne, elementTwo) );
             }
-            
             return new ResultOption<R>();
         }
     }
