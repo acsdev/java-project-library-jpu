@@ -11,11 +11,14 @@ This project has a single goal, became an big repository of smart algorithims in
 * Prefer to code in english
 * After send an code, put small description on README.me file.
 
-<!--### Sumary of classes
+### Sumary of util classes
 |Class|Description|
 |---:|---|
-|Case|Provide an fluid way to execute conditional rotines|-->
+|eti.jpu.Case|Provide an fluid way to execute conditional rotines|
 
-#### Code will be comming soom
+### Sumary of auxliary classes
+|Class|Description|
+|---:|---|
+|eti.jpu.aux.Pair|This is an auxiliary class mabe to represent two objects|
 
 #### Feel free to jump in [;-[)
