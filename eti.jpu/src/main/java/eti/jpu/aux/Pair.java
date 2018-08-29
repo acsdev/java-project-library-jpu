@@ -27,11 +27,6 @@ public class Pair <U extends Serializable, V extends Serializable> implements Se
         return second;
     }
 
-    public Pair<U, V> getPair() {
-        return this;
-    }
-
-
     @Override
     public boolean equals(Object object) {
         if (this == object) {
