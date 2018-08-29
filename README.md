@@ -3,8 +3,8 @@
 This project has a single goal, became an big repository of smart algorithims in java, without any dependencies (except junit).
 
 ### Rules
-* All code must have javadoc (in english);
-* All code must be 100% covered by UnitTest;
+* All code must have javadoc (in english preferably);
+* All code must have unit test;
 * All code must be free of any third library;
 
 ### Recommendations
