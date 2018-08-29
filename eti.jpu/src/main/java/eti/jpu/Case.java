@@ -56,8 +56,9 @@ public final class Case {
     }
 
     /**
-     * Execute a runnble method if the value of Case is <code>true</code>.
+     * Execute a runnble method if the value of Case is true.
      * @param runnable Runnable instance that will be executed if Case is true.
+     * @return TrueOption&lt;&gt; classe that can be use to configure rotine if Case is false.
      */
     public TrueOption<?> trueRun(Runnable runnable) {
         Objects.requireNonNull( runnable );        
@@ -67,16 +68,24 @@ public final class Case {
         return new TrueOption<>();
     }
     
+    /**
+     * Execute a suplier method if the value of Case is true.
+     * @param supplier Supplier&lt;R&gt; instance that will be executed if Case is true.
+     * @return TrueOption&lt;R&gt; classe that can be use to configure rotine if Case is false.
+     */
     public <R> TrueOption<R> trueGet(Supplier<R> supplier) {
         Objects.requireNonNull( supplier );
-        
         if (Boolean.TRUE.equals( objectValue )) {
             this.result = Optional.ofNullable( supplier.get() );
-        }
-        
+        }        
         return new TrueOption<R>();
     }
     
+    /**
+     * Execute a consumer method if the value of Case is true.
+     * @param consumer Consumer&lt;E&gt; instance that will be executed if Case is true.
+     * @return TrueOption&lt;Consumer&lt;E&gt&gt; classe that can be use to configure rotine if Case is false.
+     */
     public <E> TrueOption<Consumer<E>> trueAccept(Consumer<E> consumer) {
         Objects.requireNonNull( consumer );
         
@@ -87,6 +96,12 @@ public final class Case {
         return new TrueOption<Consumer<E>>();
     }
     
+    /**
+     * Execute a consumer method if the value of Case is true.
+     * @param consumer Consumer&lt;E&gt; instance that will be executed if Case is true.
+     * @param consumer Consumer&lt;E&gt; instance that will be executed if Case is true.
+     * @return TrueOption&lt;?&gt; classe that can be use to configure rotine if Case is false.
+     */
     public <E> TrueOption<?> trueAccept(Consumer<E> consumer, E element) {
         Objects.requireNonNull( consumer );
         
@@ -94,7 +109,7 @@ public final class Case {
             consumer.accept( element );
         }
         
-        return new TrueOption();
+        return new TrueOption<>();
     }
     
     public <E,F> TrueOption<BiConsumer<E,F>> trueAccept(BiConsumer<E,F> biConsumer) {
@@ -257,6 +272,9 @@ public final class Case {
         return new FalseOption<R>();
     }
     
+    /**
+     * Inner class that allows fluid sintax to call rotine that will be used when Case is false.
+     */
     public class TrueOption<T> extends ResultOption<T> {
         
         public ResultOption<?> falseRun(Runnable runnable) {
@@ -266,7 +284,7 @@ public final class Case {
                 runnable.run();
             }
             
-            return new ResultOption();
+            return new ResultOption<>();
         }
         
         public <R> ResultOption<R> falseGet(Supplier<R> supplier) {
@@ -296,7 +314,7 @@ public final class Case {
                 consumer.accept( element );
             }
             
-            return new ResultOption();
+            return new ResultOption<>();
         }
         
         public <E, F> ResultOption<?> falseAccept(BiConsumer<E, F> biConsumer, E elementOne, F elementTwo) {
@@ -306,7 +324,7 @@ public final class Case {
                 biConsumer.accept( elementOne, elementTwo );
             }
             
-            return new ResultOption();
+            return new ResultOption<>();
         }
         
         public <E, F> ResultOption<BiConsumer<E, F>> falseAccept(BiConsumer<E, F> biConsumer) {
@@ -360,6 +378,9 @@ public final class Case {
         }
     }
     
+    /**
+     * Inner class that allows fluid sintax to call rotine that will be used when Case is true.
+     */
     public class FalseOption<T> extends ResultOption<T> {        
         
         public ResultOption<T> trueRun(Runnable runnable) {
@@ -462,9 +483,12 @@ public final class Case {
             return new ResultOption<R>();
         }
     }
-    
+
+    /**
+     * Auxiliay class to allow fluid sintax.
+     */
     public class ResultOption<T> {
-        @SuppressWarnings({ "unchecked", "cast" })
+        @SuppressWarnings({ "unchecked" })
         public Optional<T> getResult() {
             return (Optional<T>) Case.this.result;
         }
