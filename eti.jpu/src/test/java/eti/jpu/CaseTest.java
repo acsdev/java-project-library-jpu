@@ -33,16 +33,16 @@ public class CaseTest {
             .falseRun( rPrintFalse );
         
         Case.of( "A".equalsIgnoreCase("b") )
-            .trueRun( rPrintTrue )
-            .falseRun( rPrintFalse );
+            .falseRun( rPrintTrue )
+            .trueRun( rPrintFalse );
         
         Case.of( ( s ) -> "A".equalsIgnoreCase(s), "b" )
-            .trueRun( rPrintTrue )
-            .falseRun( rPrintFalse );
+            .falseRun( rPrintTrue )
+            .trueRun( rPrintFalse );
 
         Case.of( Optional.empty() )
-            .trueRun( rPrintTrue )
-            .falseRun( rPrintFalse );
+            .falseRun( rPrintTrue )
+            .trueRun( rPrintFalse );
     }
         
     @Test
@@ -68,18 +68,18 @@ public class CaseTest {
 
         Assert.assertEquals("FALSE",
             Case.of( "A".equalsIgnoreCase("b") )
-                .trueGet( sPrintTrue )
-                .falseGet( sPrintFalse ).getResult().get() );
+                .falseGet( sPrintFalse )    
+                .trueGet( sPrintTrue ).getResult().get() );
         
         Assert.assertEquals("FALSE",
             Case.of( ( s ) -> "A".equalsIgnoreCase(s), "b" )
-                .trueGet( sPrintTrue )
-                .falseGet( sPrintFalse ).getResult().get() );
+                .falseGet( sPrintFalse )
+                .trueGet( sPrintTrue ).getResult().get() );
 
         Assert.assertEquals("FALSE", 
             Case.of( Optional.empty() )
-                .trueGet( sPrintTrue )
-                .falseGet( sPrintFalse ).getResult().get() );
+                .falseGet( sPrintFalse )
+                .trueGet( sPrintTrue ).getResult().get() );
 
     }
 
@@ -102,16 +102,16 @@ public class CaseTest {
             .falseAccept( cPrintFalse, "FALSE" );
 
         Case.of( "A".equalsIgnoreCase("b") )
-            .trueAccept( cPrintTrue, "TRUE" )
-            .falseAccept( cPrintFalse, "FALSE" );
+            .falseAccept( cPrintFalse, "FALSE" )
+            .trueAccept( cPrintTrue, "TRUE" );
 
         Case.of( ( s ) -> "A".equalsIgnoreCase(s), "b" )
-            .trueAccept( cPrintTrue, "TRUE" )
-            .falseAccept( cPrintFalse, "FALSE" );
+            .falseAccept( cPrintFalse, "FALSE" )
+            .trueAccept( cPrintTrue, "TRUE" );
 
         Case.of( Optional.empty() )
-            .trueAccept( cPrintTrue, "TRUE" )
-            .falseAccept( cPrintFalse, "FALSE" );
+            .falseAccept( cPrintFalse, "FALSE" )    
+            .trueAccept( cPrintTrue, "TRUE" );
     }
 
     @Test
@@ -136,16 +136,16 @@ public class CaseTest {
             .falseAccept( cPrintFalse, "FA","LSE" );
 
         Case.of( "A".equalsIgnoreCase("b") )
-            .trueAccept( cPrintTrue, "TR","UE" )
-            .falseAccept( cPrintFalse, "FA","LSE" );
+            .falseAccept( cPrintFalse, "FA","LSE" )
+            .trueAccept( cPrintTrue, "TR","UE" );
 
         Case.of( ( s ) -> "A".equalsIgnoreCase(s), "b" )
-            .trueAccept( cPrintTrue, "TR","UE" )
-            .falseAccept( cPrintFalse, "FA","LSE" );
+            .falseAccept( cPrintFalse, "FA","LSE" )
+            .trueAccept( cPrintTrue, "TR","UE" );
 
         Case.of( Optional.empty() )
-            .trueAccept( cPrintTrue, "TR","UE" )
-            .falseAccept( cPrintFalse, "FA","LSE" );
+            .falseAccept( cPrintFalse, "FA","LSE" )
+            .trueAccept( cPrintTrue, "TR","UE" );
     }
 
     @Test
@@ -171,18 +171,18 @@ public class CaseTest {
 
         Assert.assertEquals("FALSE",
             Case.of( "A".equalsIgnoreCase("b") )
-                .trueApply( fPrintTrue, "TRUE" )
-                .falseApply( fPrintFalse, "FALSE" ).getResult().get() );
+                .falseApply( fPrintFalse, "FALSE" )
+                .trueApply( fPrintTrue, "TRUE" ).getResult().get() );
 
         Assert.assertEquals("FALSE",
             Case.of( ( s ) -> "A".equalsIgnoreCase(s), "b" )
-                .trueApply( fPrintTrue, "TRUE" )
-                .falseApply( fPrintFalse, "FALSE" ).getResult().get() );
+                .falseApply( fPrintFalse, "FALSE" )    
+                .trueApply( fPrintTrue, "TRUE" ).getResult().get() );
 
         Assert.assertEquals("FALSE", 
             Case.of( Optional.empty() )
-                .trueApply( fPrintTrue, "TRUE" )
-                .falseApply( fPrintFalse, "FALSE" ).getResult().get() );
+                .falseApply( fPrintFalse, "FALSE" )
+                .trueApply( fPrintTrue, "TRUE" ).getResult().get() );
     }
 
     @Test
@@ -208,17 +208,17 @@ public class CaseTest {
 
         Assert.assertEquals("FALSE", 
             Case.of( "A".equalsIgnoreCase("b") )
-                .trueApply( fPrintTrue, "TR","UE" )
-                .falseApply( fPrintFalse, "FA","LSE" ).getResult().get() );
+                .falseApply( fPrintFalse, "FA","LSE" )
+                .trueApply( fPrintTrue, "TR","UE" ).getResult().get() );
 
         Assert.assertEquals("FALSE", 
             Case.of( ( s ) -> "A".equalsIgnoreCase(s), "b" )
-                .trueApply( fPrintTrue, "TR","UE" )
-                .falseApply( fPrintFalse, "FA","LSE" ).getResult().get() );
+                .falseApply( fPrintFalse, "FA","LSE" )
+                .trueApply( fPrintTrue, "TR","UE" ).getResult().get() );
 
         Assert.assertEquals("FALSE",
             Case.of( Optional.empty() )
-                .trueApply( fPrintTrue, "TR","UE" )
-                .falseApply( fPrintFalse, "FA","LSE" ).getResult().get() );
+                .falseApply( fPrintFalse, "FA","LSE" )
+                .trueApply( fPrintTrue, "TR","UE" ).getResult().get() );
     }
 }
