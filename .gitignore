@@ -2,4 +2,6 @@
 
 **/target
 
+**/javadoc
+
 *.class
