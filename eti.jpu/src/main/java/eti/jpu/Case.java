@@ -29,6 +29,7 @@ public final class Case {
      * Create a case using a boolean variable
      * 
      * @param value resutl of test
+     * @return new instance of Case
      */
     public static Case of(boolean value) {
         return new Case(value);
@@ -39,6 +40,7 @@ public final class Case {
      * 
      * @param value predicate of something
      * @param objectValue will be tested with predicate to decide result of the case
+     * @return new instance of Case
      */
     public static <T> Case of(Predicate<T> value, T objectValue) {
         Objects.requireNonNull( value );
@@ -50,6 +52,7 @@ public final class Case {
      * Create a case using optional
      * 
      * @param optional The result of the case is decided by optional.isPresent() 
+     * @return new instance of Case
      */
     public static Case of(Optional<?> optional) {
         return new Case( optional.isPresent() );

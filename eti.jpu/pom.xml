@@ -68,11 +68,22 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.1</version>
+				<executions>
+                	<execution>
+						<goals>
+							<goal>javadoc</goal>
+						</goals>
+						<phase>compile</phase>
+                	</execution>
+            	</executions>
 				<configuration>
-					<show>private</show>
+					<show>public</show>
 					<nohelp>true</nohelp>
 					<reportOutputDirectory>./javadoc</reportOutputDirectory>
 					<destDir>.</destDir>
+					<additionalOptions>
+	                    <additionalOption>-Xdoclint:none</additionalOption>
+                	</additionalOptions>
 				</configuration>
 			</plugin>
 		</plugins>
