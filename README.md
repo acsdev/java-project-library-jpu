@@ -15,10 +15,12 @@ This project has a single goal, became an big repository of smart algorithims in
 |Class|Description|
 |---:|---|
 |eti.jpu.Case|Provide an fluid way to execute conditional rotines|
+|eti.jpu.comparators.Distance2DComparator|This comparator has a goal for order list of data by proximity (latitude and longitude)|
 
 ### Sumary of auxliary classes
 |Class|Description|
 |---:|---|
 |eti.jpu.aux.Pair|This is an auxiliary class mabe to represent two objects|
+|eti.jpu.aux.IGeoPoint2D|Represents a single geograhfic point (latitude / longitude)|
 
 #### Feel free to jump in [;-[)
