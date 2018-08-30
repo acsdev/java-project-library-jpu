@@ -8,7 +8,7 @@ import eti.jpu.aux.IGeoPoint2D;
 import java.util.logging.Logger;
 
 /**
- * This comparator has a goal for order list of data by proximity
+ * This comparator has a goal for order list of data by proximity (latitude and longitude).
  */
 public class Distance2DComparator implements Comparator<IGeoPoint2D> {
     
@@ -29,8 +29,8 @@ public class Distance2DComparator implements Comparator<IGeoPoint2D> {
      */
     private Double compareDistance(IGeoPoint2D otherPoint) {
         try {
-            ToDoubleFunction<Double> deg2rad = (deg) -> (deg * Math.PI / 180.0);
-            ToDoubleFunction<Double> rad2deg = (rad) -> (rad * 180.0 / Math.PI);
+            ToDoubleFunction<Double> deg2rad = deg -> deg * Math.PI / 180.0;
+            ToDoubleFunction<Double> rad2deg = rad -> rad * 180.0 / Math.PI;
 
             if ( otherPoint == null || mainPoint == null ) {
                 return 1D;
