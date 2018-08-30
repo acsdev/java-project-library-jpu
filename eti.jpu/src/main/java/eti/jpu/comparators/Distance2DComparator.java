@@ -56,7 +56,10 @@ public class Distance2DComparator implements Comparator<IGeoPoint2D> {
     }   
 
     /**
-     * Comparator
+     * @param p1
+     * @param p2
+     * @return int
+     * @see java.util.Comparator#compare
      */
     @Override
     public int compare(IGeoPoint2D p1, IGeoPoint2D p2) {
