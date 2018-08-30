@@ -16,6 +16,7 @@ This project has a single goal, became an big repository of smart algorithims in
 |---:|---|
 |eti.jpu.Case|Provide an fluid way to execute conditional rotines|
 |eti.jpu.comparators.Distance2DComparator|This comparator has a goal for order list of data by proximity (latitude and longitude)|
+|eti.jpu.comparators.NumberLevelComparator|This comparator has a goal to order data like 1, 1.1, 2, 3, 3.1, 4. etc|
 
 ### Sumary of auxliary classes
 |Class|Description|
