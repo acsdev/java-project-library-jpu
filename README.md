@@ -27,6 +27,8 @@ This project has a single goal, became an big repository of smart algorithims in
 |eti.jpu.aux.ThreeFunction|A function to work with three arguments|
 
 #### Useful information
+This project has a branch call dev, if you wish to participate please use the dev branch to make fork / pull request.
+
 To generate javadoc use __mvn clean javadoc:javadoc__ on pom.xml. A directory named __javadoc__ will be create in your main directory with complete javadoc documentation.
 
 To generate report about the code, use verify phase. Just run __mvn clean verify__ on pom.xml. In target/report-codes/pmd you will find pmd report in case the code has pmd violation. In target/report-codes/jacoco will you find a report that shows how much of tne code is covered by unit test.
